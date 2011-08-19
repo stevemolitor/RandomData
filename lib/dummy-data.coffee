@@ -1,0 +1,2 @@
+randomString = ->
+  "abc"

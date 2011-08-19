@@ -1,0 +1,45 @@
+put = console.log
+
+# handler = (fns..., callback) ->
+#   finalRes = undefined
+
+#   try
+#     for fn in fns
+#       fn (err, res) ->
+#         throw err if err
+#         finalRes = res
+#   catch err
+#     return callback err
+
+#   callback null, finalRes
+
+handler = (fns..., callback) ->
+  return if fns.length is 0
+
+  fn = fns.shift()
+  fn (err, res) ->
+
+
+
+
+fn1 = (callback) ->
+  put 'fn1 called'
+  callback null, 1
+
+fn2 = (callback) ->
+  put 'fn2 called'
+  callback null, 2
+
+fn3 = (callback) ->
+  put 'fn3 called'
+  callback 'error'
+
+fn4 = (callback) ->
+  put 'fn4 called'
+  callback null, 4
+
+handler fn1, fn2, fn3, fn4, (err, res) ->
+  put err ? res
+
+handler fn1, fn2, fn4, (err, res) ->
+  put err ? res

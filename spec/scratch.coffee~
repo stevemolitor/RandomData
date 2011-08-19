@@ -1,0 +1,4 @@
+log = console.log
+
+for i in [1, 2, 3]
+  log i

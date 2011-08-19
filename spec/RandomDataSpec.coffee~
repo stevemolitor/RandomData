@@ -1,0 +1,72 @@
+randomData = require '../lib/RandomData'
+
+log = console.log
+
+describe 'dummy-data', ->
+  # numbers
+  it 'should genrate random numnbers in specified range', ->
+    i = randomData.Number(10)
+    expect(0 <= i <= 10).toBe true
+
+  # booleans
+  it 'should generate boolean values', ->
+    expect([true, false]).toContain(randomData.trueOrFalse())
+
+  # text
+  it 'should generate random strings of specified lengths', ->
+    expect(randomData.String(0).length).toEqual 0
+    expect(randomData.String(1).length).toEqual 1
+    expect(randomData.String(2).length).toEqual 2
+
+  it 'should generate random string with default length of 16', ->
+    expect(randomData.String().length).toEqual 16
+
+  it 'should generate random sentences', ->
+
+  it 'should generate random paragraphs', ->
+
+  # Person names
+  it 'should generate random female first names', ->
+    expect(randomData.DATA.female_first_names).toContain(randomData.FemaleFirstName())
+
+  it 'should genrate random male first names', ->
+    expect(randomData.DATA.male_first_names).toContain(randomData.MaleFirstName())
+
+  it 'should genrate random first names', ->
+    all_names = randomData.DATA.female_first_names + randomData.DATA.male_first_names
+    expect(all_names).toContain(randomData.FirstName())
+
+  it 'should generate random last names', ->
+    expect(randomData.DATA.last_names).toContain(randomData.LastName())
+
+  it 'should generate random middle initials', ->
+    expect(randomData.MiddleInitial().length).toBe 1
+
+  # Locations
+  it 'should generate random address line 1 values', ->
+    log randomData.addressLine1()
+
+  it 'should generate random address line 2 values', ->
+
+  it 'should generate random cities', ->
+
+  it 'should generate random US state abbreviation', ->
+
+  it 'should generate random US state full name', ->
+
+  it 'should generate random US 5 digit zip codes', ->
+
+  it 'should generate random US 10 digit zip codes', ->
+
+  it 'should generate random countries', ->
+
+  it 'should generate random US phone numbers', ->
+
+  it 'should generate random international phone numbers', ->
+
+  # Dates
+  it 'should generate random dates', ->
+
+  it 'should generate random dates between', ->
+
+

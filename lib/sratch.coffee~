@@ -1,0 +1,4 @@
+# generate a random number between 0 and n
+rand = (n) ->
+  Math.floor(Math.random() * n)
+
