@@ -1,2 +1,0 @@
-randomString = ->
-  "abc"

@@ -126,7 +126,7 @@ exports.lastName = ->
 
 # Generates single character alpha string.
 exports.middleInitial = ->
-  exports.string(1)
+  randomElement ALPHA_CHARS
 
 # Generates random first address line.
 exports.addressLine1 = ->

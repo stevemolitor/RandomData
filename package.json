@@ -1,0 +1,15 @@
+{
+  "author": "Steve Molitor <stevemolitor@gmail.com>",
+  "name": "random-data",
+  "description": "Functions for generating dummy test data.",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stevemolitor/RandomData.git"
+  },
+  "engines": {
+    "node": "~v0.4.10"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

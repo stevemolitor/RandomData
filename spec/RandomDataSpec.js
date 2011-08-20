@@ -33,7 +33,7 @@ describe('dummy-data', function() {
     return expect(random.DATA.last_names).toContain(random.lastName());
   });
   it('should generate random middle initials', function() {
-    return expect(random.middleInitial().length).toBe(1);
+    return expect(random.middleInitial()).toMatch(/^[A-Z]$/);
   });
   it('should generate random address line 1 values', function() {
     var line1;

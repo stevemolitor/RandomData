@@ -36,7 +36,7 @@ describe 'dummy-data', ->
     expect(random.DATA.last_names).toContain(random.lastName())
 
   it 'should generate random middle initials', ->
-    expect(random.middleInitial().length).toBe 1
+    expect(random.middleInitial()).toMatch /^[A-Z]$/
 
   # Locations
   it 'should generate random address line 1 values', ->
