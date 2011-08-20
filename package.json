@@ -11,5 +11,6 @@
     "node": "~v0.4.10"
   },
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": { "jasmine-node": "1.0.6" },
+  "main": "./lib/RandomData"
 }

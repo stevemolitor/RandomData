@@ -1,8 +1,9 @@
 random = require '../lib/RandomData'
+data = require '../lib/Data'
 
 log = console.log
 
-describe 'dummy-data', ->
+describe 'random-data', ->
   # numbers
   it 'should genrate random numnbers in specified range', ->
     i = random.number(10)
@@ -23,17 +24,17 @@ describe 'dummy-data', ->
 
   # Person names
   it 'should generate random female first names', ->
-    expect(random.DATA.female_first_names).toContain(random.femaleFirstName())
+    expect(data.female_first_names).toContain(random.femaleFirstName())
 
   it 'should genrate random male first names', ->
-    expect(random.DATA.male_first_names).toContain(random.maleFirstName())
+    expect(data.male_first_names).toContain(random.maleFirstName())
 
   it 'should genrate random first names', ->
-    all_names = random.DATA.female_first_names + random.DATA.male_first_names
+    all_names = data.female_first_names + data.male_first_names
     expect(all_names).toContain(random.firstName())
 
   it 'should generate random last names', ->
-    expect(random.DATA.last_names).toContain(random.lastName())
+    expect(data.last_names).toContain(random.lastName())
 
   it 'should generate random middle initials', ->
     expect(random.middleInitial()).toMatch /^[A-Z]$/
@@ -46,7 +47,7 @@ describe 'dummy-data', ->
     expect(random.addressLine2()).toMatch /^\w+ [1-9]\d{1,2}$/
 
   it 'should generate random cities', ->
-    expect(random.DATA.cities).toContain(random.city())
+    expect(data.cities).toContain(random.city())
 
   it 'should generate random US state abbreviation', ->
     expect(random.usStateAbbreviation()).toMatch /^[A-W][A-Z]$/
@@ -61,7 +62,7 @@ describe 'dummy-data', ->
     expect(random.usZipLong()).toMatch /^\d{5}-\d{4}$/
 
   it 'should generate random countries', ->
-    expect(random.DATA.countries).toContain random.country()
+    expect(data.countries).toContain random.country()
 
   it 'should generate random international phone numbers', ->
     expect(random.internationalPhone()).toMatch /^011-\d/
