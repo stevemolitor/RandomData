@@ -4,10 +4,8 @@
 # [random-data](http://random-data.rubyforge.org/) gem.  It is written
 # in coffescript but can be used from Javascript as well (since
 # coffescript generates Javascript).
-
 ## Installation
-#    npm install random-data
-
+#     npm install random-data
 ## Example
 #
 #     random = require 'random-data'
