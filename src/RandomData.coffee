@@ -44,7 +44,7 @@
 
 ## Source Code
 
-### Housekeeping
+#### Housekeeping
 
 # Object that will hold our exports.
 random = {}
@@ -53,9 +53,9 @@ random = {}
 data = require './Data'
 
 
-### Functions
+#### Functions
 
-#### General random generators
+##### General random generators
 
 # Generates a random number between 0...n, exclusive.  For example
 # `random.number(3)` will return `0`, `1` or `2`.
@@ -70,7 +70,7 @@ random.trueOrFalse = ->
   random.number(2) is 1 ? true : false
 
 
-#### Strings
+##### Strings
 
 # Generates a random alphanumeric string of given length. Default length is 16.
 random.string = (length = 16) ->
@@ -81,7 +81,7 @@ random.stringOfNumbers = (n) ->
   (i for i in [1..n]).join("") # TODO: use util.format in node.js 0.5.x
 
 
-#### Names
+##### Names
 
 # Picks a random female first name.
 random.femaleFirstName = ->
@@ -104,7 +104,7 @@ random.middleInitial = ->
   random.element data.upper_alphas
 
 
-#### Locations
+##### Locations
 
 # Generates random first address line.
 random.addressLine1 = ->
@@ -141,7 +141,7 @@ random.usZipLong = ->
 random.country = ->
   random.element data.countries
 
-#### Phone Numbers
+##### Phone Numbers
 
 # Generates a random US phone number.  For example `'628-611-6473'`.
 random.usPhone = ->
@@ -151,5 +151,5 @@ random.usPhone = ->
 random.internationalPhone = ->
   "011-#{random.number(100) + 1}-#{random.number(100)+10}-#{random.number(10000)+1000}"
 
-### Exports
+#### Exports
 module.exports = random

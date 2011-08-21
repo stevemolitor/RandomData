@@ -5,12 +5,13 @@ show_output = (err, stdout, stderr) ->
     console.log stdout + stderr
 
 task 'build', 'Build JS files', ->
-  exec 'coffee --compile --output lib/ src/', (err, stdout, stderr) ->
-    show_output err, stdout, stderr
-    console.log "Build completed successfully." unless err
+  exec 'coffee --compile --output lib/ src/', show_output
 
 task 'spec', 'Run Jasmine specs', ->
   exec 'jasmine-node spec', show_output
+
+task 'clean', 'Removes .js files created from build task', ->
+  exec 'rm -rf lib', show_output
 
 task 'doc', 'rebuild the Docco documentation', ->
   exec([

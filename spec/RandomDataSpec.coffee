@@ -1,7 +1,5 @@
-random = require '../src/RandomData'
-data = require '../src/Data'
-
-log = console.log
+random = require '../lib/RandomData'
+data = require '../lib/Data'
 
 describe 'random-data', ->
   # numbers
