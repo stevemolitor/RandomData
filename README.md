@@ -1,0 +1,1 @@
+RandomData is a node.js module that generates random test data for your application.  See [RandomData.coffe](http://stevemolitor.github.com/RandomData) for the [Docco](http://jashkenas.github.com/docco) documentation.
