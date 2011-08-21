@@ -1,84 +1,103 @@
+random = {}
+
 data = require './Data'
 
-rand = (n) -> Math.floor(Math.random() * n)
 
-randomElement = (array) ->
-  array[rand(array.length)]
+#### General random generators
+
+# Generates a random number between 0...n, exclusive.  For example
+# `random.number(2) will return either `0` or `1`.
+random.number = (n) -> Math.floor(Math.random() * n)
+
+# Picks a random element from an array.
+random.element = (array) ->
+  array[random.number array.length]
+
+# Randomly returns `true` or `false`.
+random.trueOrFalse = ->
+  random.number(2) is 1 ? true : false
 
 
-# Generates a random number between 0...n, exclusive.
-exports.number = rand
-
-# Generates true or false.
-exports.trueOrFalse = ->
-  rand(2) is 1 ? true : false
+#### Strings
 
 # Generates a random alphanumeric string of given length. Default length is 16.
-exports.string = (length = 16) ->
-  (data.all_chars[rand data.all_chars.length] for i in [0...length]).join('')
+random.string = (length = 16) ->
+  (data.all_chars[random.number data.all_chars.length] for i in [0...length]).join('')
 
-# Generates random female first name.
-exports.femaleFirstName = ->
-  randomElement(data.female_first_names)
+# Generates a random string of digits of given length.
+random.stringOfNumbers = (n) ->
+  (i for i in [1..n]).join("")  # when we upgrade to node.js 0.5 we can use its util.format method
 
-# Generates random male first name.
-exports.maleFirstName = ->
-  randomElement(data.male_first_names)
 
-# Generates random first name (male or female).
-exports.firstName = ->
-  randomElement(data.all_names)
+#### Names
 
-# Generates random last name.
-exports.lastName = ->
-  randomElement(data.last_names)
+# Picks a random female first name.
+random.femaleFirstName = ->
+  random.element data.female_first_names
 
-# Generates single character alpha string.
-exports.middleInitial = ->
-  randomElement data.upper_alphas
+# Picks a random male first name.
+random.maleFirstName = ->
+  random.element data.male_first_names
+
+# Picks random first name (male or female).
+random.firstName = ->
+  random.element data.all_names
+
+# Picks random last name.
+random.lastName = ->
+  random.element data.last_names
+
+# Returns a random letter between 'A'..'Z'.
+random.middleInitial = ->
+  random.element data.upper_alphas
+
+
+#### Locations
 
 # Generates random first address line.
-exports.addressLine1 = ->
-  "#{rand(4000) + 1} #{randomElement(data.street_names)} #{randomElement(data.street_types)}"
+random.addressLine1 = ->
+  "#{random.number(4000) + 1} #{random.element data.street_names} #{random.element data.street_types}"
 
 # Generates random second address line.
-exports.addressLine2 = ->
-  "#{randomElement(data.line_2_types)} #{exports.number(999) + 1}"
+random.addressLine2 = ->
+  "#{random.element data.line_2_types} #{random.number(999) + 1}"
 
-# Generates a random city.
-exports.city = ->
-  randomElement(data.cities)
+# Picks a random city, for example `'St. Louis'`.
+random.city = ->
+  random.element data.cities
 
-# Generates a random 2 character US state abbrevation.
-exports.usStateAbbreviation = ->
-  randomElement(data.state_abbrevs)
+# Picks a random 2 character US state abbrevation, for example `'MO'`.
+random.usStateAbbreviation = ->
+  random.element data.state_abbrevs
 
-# Generates a random US state full name.
-exports.usStateName = ->
-  randomElement(data.state_names)
-
-stringOfNumbers = (n) ->
-  (i for i in [1..n]).join("")  # when we upgrade to node.js 0.5 we can use its util.format method
+# Picks a random US state full name, for example `'Missouri'`.
+random.usStateName = ->
+  random.element data.state_names
 
 # Generates a random 5 digit US zip code.  Note:  the zip code may not
 # be an actual US zip code, but the format will be valid.
-exports.usZipShort = ->
-  stringOfNumbers 5
+random.usZipShort = ->
+  random.stringOfNumbers 5
 
 # Generates a random 9 digit US zip code in the zip+4 format. For
-# example, '12345-0123'.  Note: the zip code may not be an actual US
+# example, `'12345-0123'`.  Note: the zip code may not be an actual US
 # zip code, but the format will be valid.
-exports.usZipLong = ->
-  "#{stringOfNumbers 5}-#{stringOfNumbers 4}"
+random.usZipLong = ->
+  "#{random.stringOfNumbers 5}-#{random.stringOfNumbers 4}"
 
-# Generates a random country name.
-exports.country = ->
-  randomElement data.countries
+# Picks a random country name.
+random.country = ->
+  random.element data.countries
 
-# Generates a random US phone number
-exports.usPhone = ->
-  "#{rand(900) + 100}-#{rand(900)+100}-#{rand(10000)+1000}"
+#### Phone Numbers
 
-# Generates a random international phone number
-exports.internationalPhone = ->
-  "011-#{rand(100) + 1}-#{rand(100)+10}-#{rand(10000)+1000}"
+# Generates a random US phone number.  For example `'628-611-6473'`.
+random.usPhone = ->
+  "#{random.number(900) + 100}-#{random.number(900)+100}-#{random.number(10000)+1000}"
+
+# Generates a random international phone number, for example `'011-54-16-10169'`.
+random.internationalPhone = ->
+  "011-#{random.number(100) + 1}-#{random.number(100)+10}-#{random.number(10000)+1000}"
+
+
+module.exports = random

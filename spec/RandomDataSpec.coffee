@@ -41,7 +41,7 @@ describe 'random-data', ->
 
   # Locations
   it 'should generate random address line 1 values', ->
-    expect(line1 = random.addressLine1()).toMatch /^[1-9]\d{1,3} \w+/
+    expect(random.addressLine1()).toMatch /^[1-9]\d{1,3} \w+/
 
   it 'should generate random address line 2 values', ->
     expect(random.addressLine2()).toMatch /^\w+ [1-9]\d{1,2}$/
@@ -66,5 +66,3 @@ describe 'random-data', ->
 
   it 'should generate random international phone numbers', ->
     expect(random.internationalPhone()).toMatch /^011-\d/
-
-

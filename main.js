@@ -1,4 +1,4 @@
-data =
+exports.DATA =
   female_first_names: [
     'Alison', 'Ann', 'Anna', 'Anne', 'Barbara', 'Betty', 'Beryl', 'Carol', 'Charlotte', 'Cheryl', 'Deborah', 'Diana', 'Donna',
     'Dorothy', 'Elizabeth', 'Eve', 'Felicity', 'Fiona', 'Helen', 'Helena', 'Jennifer', 'Jessica', 'Judith', 'Karen', 'Kimberly',
@@ -36,8 +36,7 @@ data =
     'Midway', 'Mount Pleasant', 'Greenwood', 'Franklin', 'Oak Grove', 'Centerville', 'Salem', 'Georgetown', 'Fairview',
     'Riverside', 'Rotorua', 'Tauranga', 'Whakatane', 'Taupo', 'Wanganui', 'Nababeep', 'Aggeneys', 'Pofadder', 'Polokwane',
     'Bela', 'Bela', 'Goukamma', 'Karatara', 'Tswane', 'Prieska', 'Upington', 'Hoopstad', 'Bultfontein', 'Wesselsbron',
-    'Bothaville', 'Trompsburg', 'Henneman', 'Musina', 'Ogies', 'Kgatlahong', 'Tembisa', 'Tekoza', 'Sebokeng', 'Muntaung', 'Umnkomaaz',
-    'St. Louis'
+    'Bothaville', 'Trompsburg', 'Henneman', 'Musina', 'Ogies', 'Kgatlahong', 'Tembisa', 'Tekoza', 'Sebokeng', 'Muntaung', 'Umnkomaaz'
   ]
 
   us_states: [
@@ -80,18 +79,97 @@ data =
     "West Bank and Gaza", "Yemen, Rep.", "Zambia", "Zimbabwe"
   ]
 
-  upper_alphas: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+ALL_NAMES = exports.DATA.female_first_names.concat exports.DATA.male_first_names
+
+ALPHA_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+ALL_CHARS = ALPHA_CHARS.concat 'abcdefghijklmnopqrstuvwxyz0123456789'
+
+STATE_NAMES = (state[0] for state in exports.DATA.us_states)
+
+STATE_ABBREVS = (state[1] for state in exports.DATA.us_states)
 
 
-data.all_names = data.female_first_names.concat data.male_first_names
+rand = (n) -> Math.floor(Math.random() * n)
 
-data.all_alphas = data.upper_alphas.concat (c.toLowerCase() for c in data.upper_alphas)
+randomElement = (array) ->
+  array[rand(array.length)]
 
-data.all_chars = data.all_alphas.concat '0123456789'
 
-data.state_names = (state[0] for state in data.us_states)
+# Generates a random number between 0...n, exclusive.
+exports.number = rand
 
-data.state_abbrevs = (state[1] for state in data.us_states)
+# Generates true or false.
+exports.trueOrFalse = ->
+  rand(2) is 1 ? true : false
 
-module.exports = data
+# Generates a random alphanumeric string of given length. Default length is 16.
+exports.string = (length = 16) ->
+  (ALL_CHARS[rand ALL_CHARS.length] for i in [0...length]).join('')
 
+# Generates random female first name.
+exports.femaleFirstName = ->
+  randomElement(exports.DATA.female_first_names)
+
+# Generates random male first name.
+exports.maleFirstName = ->
+  randomElement(exports.DATA.male_first_names)
+
+# Generates random first name (male or female).
+exports.firstName = ->
+  randomElement(ALL_NAMES)
+
+# Generates random last name.
+exports.lastName = ->
+  randomElement(exports.DATA.last_names)
+
+# Generates single character alpha string.
+exports.middleInitial = ->
+  randomElement ALPHA_CHARS
+
+# Generates random first address line.
+exports.addressLine1 = ->
+  "#{rand(4000) + 1} #{randomElement(exports.DATA.street_names)} #{randomElement(exports.DATA.street_types)}"
+
+# Generates random second address line.
+exports.addressLine2 = ->
+  "#{randomElement(exports.DATA.line_2_types)} #{exports.number(999) + 1}"
+
+# Generates a random city.
+exports.city = ->
+  randomElement(exports.DATA.cities)
+
+# Generates a random 2 character US state abbrevation.
+exports.usStateAbbreviation = ->
+  randomElement(STATE_ABBREVS)
+
+# Generates a random US state full name.
+exports.usStateName = ->
+  randomElement(STATE_NAMES)
+
+stringOfNumbers = (n) ->
+  (i for i in [1..n]).join("")  # when we upgrade to node.js 0.5 we can use its util.format method
+
+# Generates a random 5 digit US zip code.  Note:  the zip code may not
+# be an actual US zip code, but the format will be valid.
+exports.usZipShort = ->
+  stringOfNumbers 5
+
+# Generates a random 9 digit US zip code in the zip+4 format. For
+# example, '12345-0123'.  Note: the zip code may not be an actual US
+# zip code, but the format will be valid.
+exports.usZipLong = ->
+  "#{stringOfNumbers 5}-#{stringOfNumbers 4}"
+
+# Generates a random country name.
+exports.country = ->
+  randomElement exports.DATA.countries
+
+# Generates a random US phone number
+exports.usPhone = ->
+  "#{rand(900) + 100}-#{rand(900)+100}-#{rand(10000)+1000}"
+
+# Generates a random international phone number
+exports.internationalPhone = ->
+  "011-#{rand(100) + 1}-#{rand(100)+10}-#{rand(10000)+1000}"
