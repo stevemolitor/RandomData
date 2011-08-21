@@ -1,11 +1,13 @@
 ## Description
 # RandomData is a node.js module that generates random test data for
-# your application.  It is a portial port of the ruby
+# your application.  It is a partial port of the ruby
 # [random-data](http://random-data.rubyforge.org/) gem.  It is written
-# in coffescript but can be used from Javascript as well (since
+# in coffescript but can be used from JavaScript as well (since
 # coffescript generates Javascript).
+
 ## Installation
 #     npm install random-data
+
 ## Example
 #
 #     random = require 'random-data'
@@ -118,7 +120,7 @@ random.addressLine2 = ->
 random.city = ->
   random.element data.cities
 
-# Picks a random 2 character US state abbrevation, for example `'MO'`.
+# Picks a random 2 character US state abbreviation, for example `'MO'`.
 random.usStateAbbreviation = ->
   random.element data.state_abbrevs
 
