@@ -1,11 +1,15 @@
-# Generate random test data for your application.  Thisis a portial
-# port of the ruby [random-data](http://random-data.rubyforge.org/)
-# gem.  It is written in coffescript but can be used from Javascript
-# as well (since coffescript generates Javascript).
+## Description
+
+# RandomData is a node.js module that generates random test data for
+# your application.  It is a portial port of the ruby
+# [random-data](http://random-data.rubyforge.org/) gem.  It is written
+# in coffescript but can be used from Javascript as well (since
+# coffescript generates Javascript).
 
 ## Example
+#
 #     random = require 'random-data'
-
+#
 #     randomUser =
 #       login: random.string 10
 #       password: random.string 10
@@ -19,7 +23,7 @@
 #       zip: random.usZipLong()
 #       home_phone: random.usPhone()
 #       cell_phone: random.usPhone()
-
+#
 #     console.log randomUser
 
 # Output:
@@ -37,19 +41,24 @@
 #       home_phone: '209-611-9742',
 #       cell_phone: '714-181-10467' }
 
-## Implementation
 
-# Object that will contain our exports.
+## Source Code
+
+### Housekeeping
+
+# Object that will hold our exports.
 random = {}
 
-# Import data (list of cities, states, etc.)
+# Import data (list of names, cities, etc).
 data = require './Data'
 
+
+### Functions
 
 #### General random generators
 
 # Generates a random number between 0...n, exclusive.  For example
-# `random.number(2) will return either `0` or `1`.
+# `random.number(3)` will return `0`, `1` or `2`.
 random.number = (n) -> Math.floor(Math.random() * n)
 
 # Picks a random element from an array.
@@ -69,7 +78,7 @@ random.string = (length = 16) ->
 
 # Generates a random string of digits of given length.
 random.stringOfNumbers = (n) ->
-  (i for i in [1..n]).join("")  # when we upgrade to node.js 0.5 we can use its util.format method
+  (i for i in [1..n]).join("") # TODO: use util.format in node.js 0.5.x
 
 
 #### Names
@@ -142,5 +151,5 @@ random.usPhone = ->
 random.internationalPhone = ->
   "011-#{random.number(100) + 1}-#{random.number(100)+10}-#{random.number(10000)+1000}"
 
-
+### Exports
 module.exports = random
