@@ -69,8 +69,10 @@ random.element = (array) ->
 
 # Randomly returns `true` or `false`.
 random.trueOrFalse = ->
-  random.number(2) is 1 ? true : false
-
+  if random.number(2) is 1
+    true
+  else
+    false
 
 ##### Strings
 
@@ -80,7 +82,7 @@ random.string = (length = 16) ->
 
 # Generates a random string of digits of given length.
 random.stringOfNumbers = (n) ->
-  (i for i in [1..n]).join("") # TODO: use util.format in node.js 0.5.x
+  (random.number(i) for i in [1..n]).join("")
 
 
 ##### Names

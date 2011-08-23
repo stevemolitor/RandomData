@@ -10,6 +10,9 @@ task 'build', 'Build JS files', ->
 task 'spec', 'Run Jasmine specs', ->
   exec 'jasmine-node spec', show_output
 
+task 'test', 'Run Jasmine specs', ->
+  exec 'expresso test', show_output
+
 task 'clean', 'Removes .js files created from build task', ->
   exec 'rm -rf lib', show_output
 
