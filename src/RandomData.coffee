@@ -1,4 +1,4 @@
-## Description
+7## Description
 # RandomData is a node.js module that generates random test data for
 # your application.  It is a partial port of the ruby
 # [random-data](http://random-data.rubyforge.org/) gem.  It is written
@@ -69,10 +69,7 @@ random.element = (array) ->
 
 # Randomly returns `true` or `false`.
 random.trueOrFalse = ->
-  if random.number(2) is 1
-    true
-  else
-    false
+  random.number(2) is 1
 
 ##### Strings
 

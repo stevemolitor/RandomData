@@ -1,6 +1,6 @@
 random = require '../lib/RandomData'
 
-randomUser = ->
+randomUser = (n) ->
   login: random.string 10
   password: random.string 10
   first_name: random.firstName()

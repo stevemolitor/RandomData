@@ -21,10 +21,10 @@ module.exports =
   'generates random female first names': ->
     assert.equal 'Ann', random.femaleFirstName()
 
-  'genrates random male first names': ->
+  'generates random male first names': ->
     assert.equal 'Anthony', random.maleFirstName()
 
-  'genrates random first names': ->
+  'generates random first names': ->
     assert.equal 'Ann', random.firstName()
 
   'generates random last names': ->
