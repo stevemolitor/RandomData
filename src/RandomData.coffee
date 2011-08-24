@@ -71,6 +71,7 @@ random.element = (array) ->
 random.trueOrFalse = ->
   random.number(2) is 1
 
+
 ##### Strings
 
 # Generates a random alphanumeric string of given length. Default length is 16.
