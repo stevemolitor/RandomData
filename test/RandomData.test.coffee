@@ -58,8 +58,8 @@ module.exports =
   'generates random countries': ->
     assert.equal 'Albania', random.country()
 
+  'generates random US phone number': ->
+    assert.equal '101-101-1001', random.usPhone()
+
   'generates random international phone numbers': ->
     assert.equal '011-2-11-1001', random.internationalPhone()
-
-
-
